@@ -5,9 +5,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>{{ title or metadata.title }}</title>
 		<meta name="description" content="{{ description or metadata.description }}">
-		<link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="{{ metadata.title }}">
 
-		{#- Uncomment this if you’d like folks to know that you used Eleventy to build your site!  #}
+		{#- Google Fonts #}
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;500;600;700&family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+		{#- Uncomment this if you'd like folks to know that you used Eleventy to build your site!  #}
 		{#- <meta name="generator" content="{{ eleventy.generator }}"> #}
 
 		{#-
@@ -43,7 +47,10 @@
 		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
 
 		<header>
-			<a href="/" class="home-link">{{ metadata.title }}</a>
+			<a href="/" class="home-link">
+				<img src="/role-logo-beta.jpeg" alt="{{ metadata.title }}" eleventy:ignore>
+				<span class="site-title">sempre cabe mais um</span>
+			</a>
 
 			{#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
 			<nav>
@@ -63,9 +70,24 @@
 		</main>
 
 		<footer>
-			<p>
-				<em>Built with <a href="https://www.11ty.dev/">{{ eleventy.generator }}</a></em>
-			</p>
+			<div class="footer-content">
+				<div class="footer-column">
+					<h4>rolê</h4>
+					<p>Descubra os melhores eventos e experiências de São Paulo.</p>
+					<p class="footer-tagline">Sempre cabe mais um!</p>
+				</div>
+				<div class="footer-column">
+					<ul class="footer-nav">
+						<li><a href="/">Acontecendo</a></li>
+						<li><a href="/explore/">Explore</a></li>
+						<li><a href="/crie/">Crie</a></li>
+						<li><a href="/contato/">Contato</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>Feito com amor em São Paulo</p>
+			</div>
 		</footer>
 
 		<!-- This page `{{ page.url }}` was built on {% currentBuildDate %} -->

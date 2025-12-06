@@ -1,29 +1,80 @@
 ---js
 const eleventyNavigation = {
-	key: "Home",
+	key: "Acontecendo",
 	order: 1
 };
-
-const numberOfLatestPostsToShow = 3;
 ---
-{% set postsCount = collections.posts | length %}
-{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
-<h1>Latest {{ latestPostsCount }} Post{% if latestPostsCount != 1 %}s{% endif %}</h1>
+<section class="hero-section">
+	<div class="container">
+		<h1>Acontecendo Agora</h1>
+		<p>Descubra os melhores eventos e experiências da sua cidade. Sempre cabe mais um!</p>
+	</div>
+</section>
 
-{% set postslist = collections.posts | head(-1 * numberOfLatestPostsToShow) %}
-{% set postslistCounter = postsCount %}
-{% include "postslist.njk" %}
+<section class="explore-section">
+	<h2>Explore</h2>
+	<div class="event-cards">
+		<a href="/explore/minerva-cuevas-ecologia-social/" class="event-card">
+			<div class="event-card-image" style="background-image: url('https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=800')"></div>
+			<div class="event-card-content">
+				<p class="event-date">6 de dezembro de 2025</p>
+				<h3>Minerva Cuevas: Ecologia Social</h3>
+				<p>Museu de Arte de São Paulo (MASP) — Exposição da artista mexicana que discute ambiente e sociedade, parte do ciclo "Histórias da Ecologia", para quem ama arte engajada.</p>
+			</div>
+		</a>
 
-{% set morePosts = postsCount - numberOfLatestPostsToShow %}
-{% if morePosts > 0 %}
-<p>{{ morePosts }} more post{% if morePosts != 1 %}s{% endif %} can be found in <a href="blog.njk">the archive</a>.</p>
-{% endif %}
+		<a href="/explore/pina-em-festa/" class="event-card">
+			<div class="event-card-image" style="background-image: url('https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=800')"></div>
+			<div class="event-card-content">
+				<p class="event-date">6 de dezembro de 2025</p>
+				<h3>Pina em Festa</h3>
+				<p>Pinacoteca (Edifício Pina Contemporânea) — Dia de festa com oficinas, atividades artísticas e visitas guiadas gratuitas, celebrando os 120 anos da Pinacoteca em clima leve e acolhedor.</p>
+			</div>
+		</a>
 
-{# List every content page in the project #}
-{#
-<ul>
-	{%- for entry in collections.all %}
-	<li><a href="{{ entry.url }}"><code>{{ entry.url }}</code></a></li>
-	{%- endfor %}
-</ul>
-#}
+		<a href="/explore/teatro-matilde/" class="event-card">
+			<div class="event-card-image" style="background-image: url('https://images.unsplash.com/photo-1507924538820-ede94a04019d?q=80&w=800')"></div>
+			<div class="event-card-content">
+				<p class="event-date">6 de dezembro de 2025</p>
+				<h3>Teatro "Matilde"</h3>
+				<p>Centro Cultural Banco do Brasil (CCBB SP) — Comédia emocionante com Malu Valle em homenagem a Paulo Gustavo, que mistura humor afiado e afeto, garantindo boas risadas e lembranças.</p>
+			</div>
+		</a>
+
+		<a href="/explore/opera-wozzeck/" class="event-card">
+			<div class="event-card-image" style="background-image: url('https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=800')"></div>
+			<div class="event-card-content">
+				<p class="event-date">6 de dezembro de 2025</p>
+				<h3>Ópera "Wozzeck"</h3>
+				<p>Sala São Paulo — A Osesp apresenta a ópera de Alban Berg às 16h30, unindo drama intenso e música poderosa em uma tarde de arrepiar qualquer tipo de público.</p>
+			</div>
+		</a>
+
+		<a href="/explore/candlelight-vivaldi/" class="event-card">
+			<div class="event-card-image" style="background-image: url('https://images.unsplash.com/photo-1478147427282-58a87a120781?q=80&w=800')"></div>
+			<div class="event-card-content">
+				<p class="event-date">6 de dezembro de 2025</p>
+				<h3>Candlelight: Vivaldi, As Quatro Estações</h3>
+				<p>Catedral da Sé de São Paulo — Concerto à luz de velas com As Quatro Estações, de Vivaldi, em sessões às 18h30 e 21h, criando um clima mágico, delicado e intimista.</p>
+			</div>
+		</a>
+
+		<a href="/explore/caetano-veloso-show/" class="event-card">
+			<div class="event-card-image" style="background-image: url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=800')"></div>
+			<div class="event-card-content">
+				<p class="event-date">6 de dezembro de 2025</p>
+				<h3>Caetano Veloso em Show</h3>
+				<p>Espaço Unimed — Show de Caetano Veloso com grandes sucessos e novidades, encontro imperdível para cantar junto, se emocionar e celebrar a força da música brasileira.</p>
+			</div>
+		</a>
+
+		<a href="/explore/festival-nova-brasil/" class="event-card">
+			<div class="event-card-image" style="background-image: url('https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=800')"></div>
+			<div class="event-card-content">
+				<p class="event-date">6 de dezembro de 2025</p>
+				<h3>Festival Nova Brasil</h3>
+				<p>Parque Villa-Lobos — Festival ao ar livre no Parque Villa-Lobos, com vários artistas da Nova Brasil, clima descontraído e muitas horas de som ao vivo para curtir com amigos.</p>
+			</div>
+		</a>
+	</div>
+</section>

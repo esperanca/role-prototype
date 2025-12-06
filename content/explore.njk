@@ -1,0 +1,44 @@
+---js
+const eleventyNavigation = {
+	key: "Explore",
+	order: 2
+};
+---
+<section class="hero-section">
+	<div class="container">
+		<h1>Explore</h1>
+		<p>Todos os eventos e experiências disponíveis. Sempre cabe mais um!</p>
+	</div>
+</section>
+
+<section class="explore-section">
+	<div class="container">
+		{%- set eventCount = 0 -%}
+		{%- for item in collections.all -%}
+			{%- if "/explore/" in item.inputPath and item.inputPath.endsWith('.md') -%}
+				{%- set eventCount = eventCount + 1 -%}
+			{%- endif -%}
+		{%- endfor -%}
+
+		{% if eventCount > 0 %}
+		<div class="event-list">
+		{%- for item in collections.all | reverse %}
+			{%- if "/explore/" in item.inputPath and item.inputPath.endsWith('.md') -%}
+			<a href="{{ item.url }}" class="event-list-item{% if item.url == url %} event-list-item-active{% endif %}">
+				<div class="event-list-image" style="background-image: url('{{ item.data.heroImage }}')"></div>
+				<div class="event-list-info">
+					<h3 class="event-list-title">{% if item.data.title %}{{ item.data.title }}{% else %}<code>{{ item.url }}</code>{% endif %}</h3>
+					<time class="event-list-date" datetime="{{ item.date | htmlDateString }}">{{ item.date | readableDate("dd 'de' MMMM, yyyy") }}</time>
+					{% if item.data.location %}
+					<span class="event-list-location">{{ item.data.location }}</span>
+					{% endif %}
+				</div>
+			</a>
+			{%- endif -%}
+		{%- endfor %}
+		</div>
+		{% else %}
+		<p>Nenhum evento encontrado no momento.</p>
+		{% endif %}
+	</div>
+</section>
