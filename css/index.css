@@ -152,6 +152,14 @@ main blockquote {
 	margin-right: auto;
 }
 
+/* Override for event cards - keep content left-aligned */
+.event-card-content h3,
+.event-card-content p {
+	max-width: none;
+	margin-left: 0;
+	margin-right: 0;
+}
+
 main img {
 	width: 100%;
 	max-width: 100%;
