@@ -6,10 +6,6 @@ tags: ["festival", "música", "ao ar livre"]
 heroImage: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=2000"
 ---
 
-<img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=2000" alt="Festival Nova Brasil" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px;">
-
-# Festival Nova Brasil
-
 **Local:** Parque Villa-Lobos
 **Data:** 6 de dezembro de 2025
 **Horário:** 13h às 22h

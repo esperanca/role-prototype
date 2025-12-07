@@ -1,0 +1,68 @@
+---js
+const eleventyNavigation = {
+	key: "contato",
+	order: 4
+};
+---
+<section class="hero-section">
+	<div class="container">
+		<h1>Fale Conosco</h1>
+		<p>Estamos aqui para ajudar você a criar experiências incríveis!</p>
+	</div>
+</section>
+
+<section class="contact-section">
+	<div class="container">
+		<div class="whatsapp-cta">
+			<svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="none">
+				<circle cx="128" cy="128" r="118" fill="#5EBC7E"/>
+				<path d="M128 20C67.16 20 18 69.16 18 130c0 19.6 5.12 38 14.08 53.92L20 236l53.12-12.08C89.04 232.88 107.44 238 128 238c60.84 0 110-49.16 110-110S188.84 20 128 20zm54.16 144.16c-2.32 6.52-11.6 11.96-16.88 12.76-4.52.68-10.44 1.04-16.88-1.04-4-1.32-9.16-3.08-15.76-6.04-27.72-12.4-45.8-40.52-47.16-42.36-1.36-1.84-11.08-14.72-11.08-28.08s7.04-19.92 9.52-22.64c2.48-2.72 5.4-3.4 7.2-3.4 1.8 0 3.6.04 5.16.08 1.68.08 3.92-.64 6.12 4.68 2.24 5.48 7.68 18.76 8.36 20.12.68 1.36 1.12 2.96.24 4.8-.88 1.84-1.32 2.96-2.64 4.56-1.32 1.6-2.8 3.56-4 4.76-1.32 1.36-2.72 2.84-1.16 5.56 1.56 2.68 6.96 11.48 14.96 18.6 10.28 9.16 18.96 12 21.64 13.36 2.68 1.36 4.24 1.12 5.8-.68 1.56-1.8 6.72-7.84 8.52-10.52 1.8-2.68 3.6-2.24 6.08-1.36 2.48.88 15.76 7.44 18.48 8.8 2.72 1.36 4.52 2.04 5.2 3.16.68 1.16.68 6.52-1.64 13.04z" fill="white"/>
+			</svg>
+			<div class="whatsapp-text">
+				<p><strong>Estamos no WhatsApp</strong><br>
+				dúvidas, suporte e rolês exclusivos na nossa comunidade.</p>
+			</div>
+			<a href="https://chat.whatsapp.com/LgFHb4QYiRzCSwG4uRdmUX" class="whatsapp-button" target="_blank" rel="noopener noreferrer">
+				Entrar na Comunidade
+			</a>
+		</div>
+
+		<div class="contact-divider">
+			<span>ou</span>
+		</div>
+
+		<div class="contact-form-container">
+			<h2>Envie sua mensagem</h2>
+			<form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+				<input type="hidden" name="form-name" value="contact">
+				<p class="hidden">
+					<label>
+						Don't fill this out if you're human: <input name="bot-field" />
+					</label>
+				</p>
+
+				<div class="form-group">
+					<label for="name">Nome</label>
+					<input type="text" id="name" name="name" required>
+				</div>
+
+				<div class="form-group">
+					<label for="email">E-mail</label>
+					<input type="email" id="email" name="email" required>
+				</div>
+
+				<div class="form-group">
+					<label for="subject">Assunto</label>
+					<input type="text" id="subject" name="subject" required>
+				</div>
+
+				<div class="form-group">
+					<label for="message">Mensagem</label>
+					<textarea id="message" name="message" rows="6" required></textarea>
+				</div>
+
+				<button type="submit" class="submit-button">Enviar Mensagem</button>
+			</form>
+		</div>
+	</div>
+</section>

@@ -6,10 +6,6 @@ tags: ["arte", "festa", "atividades"]
 heroImage: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2000"
 ---
 
-<img src="https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2000" alt="Pina em Festa" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px;">
-
-# Pina em Festa
-
 **Local:** Pinacoteca de São Paulo (Pina Luz e Pina Contemporânea)
 **Data:** 6 de dezembro de 2025
 **Horário:** 10h às 18h

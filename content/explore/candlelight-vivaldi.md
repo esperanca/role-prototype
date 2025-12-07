@@ -6,10 +6,6 @@ tags: ["música clássica", "concerto", "vivaldi"]
 heroImage: "https://images.unsplash.com/photo-1478147427282-58a87a120781?q=80&w=2000"
 ---
 
-<img src="https://images.unsplash.com/photo-1478147427282-58a87a120781?q=80&w=2000" alt="Candlelight: Vivaldi, As Quatro Estações" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px;">
-
-# Candlelight: Vivaldi, As Quatro Estações
-
 **Local:** Catedral da Sé de São Paulo
 **Data:** 6 de dezembro de 2025
 **Horários:** 18h30 e 21h

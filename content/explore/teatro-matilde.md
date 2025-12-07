@@ -6,10 +6,6 @@ tags: ["teatro", "comédia", "homenagem"]
 heroImage: "https://images.unsplash.com/photo-1507924538820-ede94a04019d?q=80&w=2000"
 ---
 
-<img src="https://images.unsplash.com/photo-1507924538820-ede94a04019d?q=80&w=2000" alt="Teatro Matilde" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px;">
-
-# Teatro "Matilde"
-
 **Local:** Centro Cultural Banco do Brasil (CCBB SP)
 **Temporada:** 4 de dezembro de 2025 a 25 de janeiro de 2026
 **Horários:** Quintas e sextas às 19h | Sábados e domingos às 17h

@@ -6,10 +6,6 @@ tags: ["música", "show", "mpb"]
 heroImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=2000"
 ---
 
-<img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=2000" alt="Caetano Veloso em Show" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px;">
-
-# Caetano Veloso em Show
-
 **Local:** Espaço Unimed
 **Data:** 6 de dezembro de 2025
 **Horário:** Portões às 20h | Show às 22h

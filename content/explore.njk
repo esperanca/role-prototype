@@ -1,40 +1,31 @@
 ---js
 const eleventyNavigation = {
-	key: "Explore",
+	key: "eventos",
 	order: 2
 };
 ---
 <section class="hero-section">
 	<div class="container">
-		<h1>Explore</h1>
-		<p>Todos os eventos e experiências disponíveis. Sempre cabe mais um!</p>
+		<h1>Eventos</h1>
+		<p>Todos os eventos e experiências em São Paulo</p>
 	</div>
 </section>
 
 <section class="explore-section">
 	<div class="container">
-		{%- set eventCount = 0 -%}
-		{%- for item in collections.all -%}
-			{%- if "/explore/" in item.inputPath and item.inputPath.endsWith('.md') -%}
-				{%- set eventCount = eventCount + 1 -%}
-			{%- endif -%}
-		{%- endfor -%}
-
-		{% if eventCount > 0 %}
+		{% if collections.events and collections.events.length > 0 %}
 		<div class="event-list">
-		{%- for item in collections.all | reverse %}
-			{%- if "/explore/" in item.inputPath and item.inputPath.endsWith('.md') -%}
-			<a href="{{ item.url }}" class="event-list-item{% if item.url == url %} event-list-item-active{% endif %}">
-				<div class="event-list-image" style="background-image: url('{{ item.data.heroImage }}')"></div>
+		{%- for event in collections.events | reverse %}
+			<a href="{{ event.url }}" class="event-list-item{% if event.url == url %} event-list-item-active{% endif %}">
+				<div class="event-list-image" style="background-image: url('{{ event.data.heroImage }}')"></div>
 				<div class="event-list-info">
-					<h3 class="event-list-title">{% if item.data.title %}{{ item.data.title }}{% else %}<code>{{ item.url }}</code>{% endif %}</h3>
-					<time class="event-list-date" datetime="{{ item.date | htmlDateString }}">{{ item.date | readableDate("dd 'de' MMMM, yyyy") }}</time>
-					{% if item.data.location %}
-					<span class="event-list-location">{{ item.data.location }}</span>
+					<h3 class="event-list-title">{% if event.data.title %}{{ event.data.title }}{% else %}<code>{{ event.url }}</code>{% endif %}</h3>
+					<time class="event-list-date" datetime="{{ event.date | htmlDateString }}">{{ event.date | readableDate("dd 'de' MMMM, yyyy") }}</time>
+					{% if event.data.location %}
+					<span class="event-list-location">{{ event.data.location }}</span>
 					{% endif %}
 				</div>
 			</a>
-			{%- endif -%}
 		{%- endfor %}
 		</div>
 		{% else %}

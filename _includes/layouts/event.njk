@@ -1,0 +1,43 @@
+---
+layout: layouts/base.njk
+---
+<article class="event-detail">
+	<div class="event-detail-content">
+		{% if heroImage %}
+		<div class="event-detail-hero">
+			<img src="{{ heroImage }}" alt="{{ title }}" class="event-hero-image">
+		</div>
+		{% endif %}
+
+		<div class="event-detail-meta">
+			{% if date %}
+			<time datetime="{{ date | htmlDateString }}" class="event-detail-date">
+				{{ date | readableDate("dd 'de' MMMM, yyyy") }}
+			</time>
+			{% endif %}
+
+			{% if location %}
+			<span class="event-detail-location">{{ location }}</span>
+			{% endif %}
+		</div>
+
+		<h1 class="event-detail-title">{{ title }}</h1>
+
+		<div class="event-detail-body">
+			{{ content | safe }}
+		</div>
+
+		{% if tags %}
+		<div class="event-detail-tags">
+			{% for tag in tags %}
+				<a href="/tags/{{ tag | slugify }}/" class="event-tag">#{{ tag }}</a>
+			{% endfor %}
+		</div>
+		{% endif %}
+
+		<div class="event-cta">
+			<p class="event-cta-text">Chame seus amigos para {{ title }}</p>
+			<a href="https://chat.whatsapp.com/LgFHb4QYiRzCSwG4uRdmUX" class="event-cta-button" target="_blank" rel="noopener noreferrer">criar rolê</a>
+		</div>
+	</div>
+</article>

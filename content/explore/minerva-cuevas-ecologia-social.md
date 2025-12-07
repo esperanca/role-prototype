@@ -6,10 +6,6 @@ tags: ["arte", "exposição", "ecologia"]
 heroImage: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=2000"
 ---
 
-<img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=2000" alt="Minerva Cuevas: Ecologia Social" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px;">
-
-# Minerva Cuevas: Ecologia Social
-
 **Local:** Museu de Arte de São Paulo (MASP) - 2º Subsolo
 **Data:** 5 de dezembro de 2025 a 8 de março de 2026
 **Horário:** Terça a domingo, 10h às 18h (quinta até 20h)

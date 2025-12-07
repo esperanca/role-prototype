@@ -6,10 +6,6 @@ tags: ["ópera", "música clássica", "osesp"]
 heroImage: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=2000"
 ---
 
-<img src="https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=2000" alt="Ópera Wozzeck" style="width: 100%; height: 400px; object-fit: cover; margin-bottom: 2rem; border-radius: 8px;">
-
-# Ópera "Wozzeck"
-
 **Local:** Sala São Paulo
 **Datas:** 2, 4 e 6 de dezembro de 2025
 **Horários:**
