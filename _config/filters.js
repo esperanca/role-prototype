@@ -40,4 +40,18 @@ export default function(eleventyConfig) {
 	eleventyConfig.addFilter("sortAlphabetically", strings =>
 		(strings || []).sort((b, a) => b.localeCompare(a))
 	);
+
+	eleventyConfig.addFilter("getCurrentDate", () => {
+		return new Date();
+	});
+
+	eleventyConfig.addFilter("filterFutureEvents", (events) => {
+		const now = new Date();
+		now.setHours(0, 0, 0, 0); // Start of today
+		return (events || []).filter(event => {
+			const eventDate = new Date(event.data.date);
+			eventDate.setHours(0, 0, 0, 0);
+			return eventDate >= now;
+		});
+	});
 };

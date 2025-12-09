@@ -13,9 +13,10 @@ const eleventyNavigation = {
 
 <section class="explore-section">
 	<div class="container">
-		{% if collections.events and collections.events.length > 0 %}
+		{%- set futureEvents = collections.events | filterFutureEvents | reverse -%}
+		{% if futureEvents and futureEvents.length > 0 %}
 		<div class="event-list">
-		{%- for event in collections.events | reverse %}
+		{%- for event in futureEvents %}
 			<a href="{{ event.url }}" class="event-list-item{% if event.url == url %} event-list-item-active{% endif %}">
 				<div class="event-list-image" style="background-image: url('{{ event.data.heroImage }}')"></div>
 				<div class="event-list-info">
