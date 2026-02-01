@@ -1,7 +1,7 @@
 ---
 title: "Budii: A Alma Lúdica de Thiago Rosinhole"
 date: 2026-01-11
-location: "Memorial da América Latina"
+local_id: "memorial-america-latina"
 tags: ["exposição", "arte_contemporânea", "ilustração", "cultura_latinoamericana"]
 heroImage: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=2000"
 ---

@@ -17,12 +17,15 @@ const eleventyNavigation = {
 		{% if futureEvents and futureEvents.length > 0 %}
 		<div class="event-list">
 		{%- for event in futureEvents %}
+			{%- set eventLocal = event.data.local_id | getLocal(locais) -%}
 			<a href="{{ event.url }}" class="event-list-item{% if event.url == url %} event-list-item-active{% endif %}">
 				<div class="event-list-image" style="background-image: url('{{ event.data.heroImage }}')"></div>
 				<div class="event-list-info">
 					<h3 class="event-list-title">{% if event.data.title %}{{ event.data.title }}{% else %}<code>{{ event.url }}</code>{% endif %}</h3>
 					<time class="event-list-date" datetime="{{ event.date | htmlDateString }}">{{ event.date | readableDate("dd 'de' MMMM, yyyy") }}</time>
-					{% if event.data.location %}
+					{% if eventLocal %}
+					<span class="event-list-location">{{ eventLocal.nome }}</span>
+					{% elif event.data.location %}
 					<span class="event-list-location">{{ event.data.location }}</span>
 					{% endif %}
 				</div>

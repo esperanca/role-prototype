@@ -1,7 +1,7 @@
 ---
 title: "Dona Lola"
 date: 2025-12-14
-location: "Teatro Renaissance"
+local_id: "teatro-renaissance"
 tags: ["teatro", "comédia", "stand_up", "personagens"]
 heroImage: "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?q=80&w=2000"
 ---

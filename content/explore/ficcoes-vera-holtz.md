@@ -1,7 +1,7 @@
 ---
 title: "Ficções"
 date: 2025-12-21
-location: "Teatro FAAP"
+local_id: "teatro-faap"
 tags: ["teatro", "filosofia", "monólogo", "reflexão"]
 heroImage: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2000"
 ---

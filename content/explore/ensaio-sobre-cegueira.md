@@ -1,7 +1,7 @@
 ---
 title: "(UM) Ensaio sobre a Cegueira"
 date: 2025-12-14
-location: "Sesc 24 de Maio"
+local_id: "sesc-24-de-maio"
 tags: ["teatro", "adaptação_literária", "drama", "clássico_moderno"]
 heroImage: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2000"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Alices"
 date: 2025-12-13
-location: "Sesc Pinheiros"
+local_id: "sesc-pinheiros"
 tags: ["teatro", "feminismo", "drama_social", "contemporâneo"]
 heroImage: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2000"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Pina em Festa"
 date: 2025-12-06
-location: "Pinacoteca (Edifício Pina Contemporânea)"
+local_id: "pinacoteca"
 tags: ["arte", "festa", "atividades"]
 heroImage: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?q=80&w=2000"
 ---

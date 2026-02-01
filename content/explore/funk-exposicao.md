@@ -1,7 +1,7 @@
 ---
 title: "FUNK: Um grito de ousadia e liberdade"
 date: 2026-08-30
-location: "Museu da Língua Portuguesa"
+local_id: "museu-lingua-portuguesa"
 tags: ["exposição", "música", "cultura_periférica", "história"]
 heroImage: "/img/funk-exposicao.webp"
 ---

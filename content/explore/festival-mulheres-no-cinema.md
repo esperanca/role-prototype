@@ -1,7 +1,7 @@
 ---
 title: "Festival Mulheres no Cinema"
 date: 2025-12-07
-location: "Centro Cultural Olido"
+local_id: "centro-cultural-olido"
 tags: ["cinema", "mulheres", "audiovisual", "debates"]
 heroImage: "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2000"
 ---

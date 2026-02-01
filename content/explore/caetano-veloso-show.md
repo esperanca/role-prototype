@@ -1,7 +1,7 @@
 ---
 title: "Caetano Veloso em Show"
 date: 2025-12-06
-location: "Espaço Unimed"
+local_id: "espaco-unimed"
 tags: ["música", "show", "mpb"]
 heroImage: "https://s2-quem.glbimg.com/OLs2ADBQR9y9l0_HdZoH4WFo22o=/0x0:1600x1066/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_b0f0e84207c948ab8b8777be5a6a4395/internal_photos/bs/2024/9/Y/nZJE57SAAbX7Yy3icaEA/bd028108-c803-4951-91cb-f3edb2237416.jpg"
 ---

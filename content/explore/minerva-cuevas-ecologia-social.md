@@ -1,7 +1,7 @@
 ---
 title: "Minerva Cuevas: Ecologia Social"
 date: 2025-12-06
-location: "Museu de Arte de São Paulo (MASP)"
+local_id: "masp"
 tags: ["arte", "exposição", "ecologia"]
 heroImage: "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?q=80&w=2000"
 ---

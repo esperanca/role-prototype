@@ -1,7 +1,7 @@
 ---
 title: "Candlelight Especial de Natal: O Quebra-Nozes"
 date: 2025-12-21
-location: "MASP"
+local_id: "masp"
 tags: ["concerto", "natal", "clássico", "experiência_imersiva"]
 heroImage: "https://images.unsplash.com/photo-1482443347648-e3a23f3d710c?q=80&w=2000"
 ---

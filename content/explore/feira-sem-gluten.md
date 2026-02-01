@@ -1,7 +1,7 @@
 ---
 title: "Feira Sem Glúten"
 date: 2025-12-13
-location: "Centro de Eventos São Luís"
+local_id: "centro-eventos-sao-luis"
 tags: ["feira_gastronômica", "saúde", "alimentação_sem_glúten", "natal"]
 heroImage: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=2000"
 ---
