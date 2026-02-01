@@ -60,4 +60,10 @@ export default function(eleventyConfig) {
 		if (!localId || !locais) return null;
 		return locais[localId] || null;
 	});
+
+	// Get events by local_id
+	eleventyConfig.addFilter("getEventsByLocal", (events, localId) => {
+		if (!events || !localId) return [];
+		return events.filter(event => event.data.local_id === localId);
+	});
 };

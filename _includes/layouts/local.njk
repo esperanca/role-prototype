@@ -1,0 +1,57 @@
+---
+layout: layouts/base.njk
+---
+<article class="local-detail">
+	<div class="local-detail-content">
+		<div class="local-header">
+			<span class="local-type">{{ local.tipo | replace("_", " ") }}</span>
+			<h1 class="local-title">{{ local.nome }}</h1>
+			{% if local.endereco and local.bairro %}
+			<p class="local-address">{{ local.endereco }} – {{ local.bairro }}</p>
+			{% endif %}
+		</div>
+
+		{% if local.descricao %}
+		<div class="local-description">
+			<p>{{ local.descricao }}</p>
+		</div>
+		{% endif %}
+
+		<div class="local-info">
+			<ul class="local-features">
+				{% if local.acessibilidade %}
+				<li class="feature-item feature-accessibility">Acessibilidade</li>
+				{% endif %}
+				{% if local.criancas %}
+				<li class="feature-item feature-kids">Para todas as idades</li>
+				{% endif %}
+			</ul>
+			{% if local.link %}
+			<a href="{{ local.link }}" class="local-link" target="_blank" rel="noopener noreferrer">Visitar site oficial</a>
+			{% endif %}
+		</div>
+
+		{%- set localEvents = collections.events | getEventsByLocal(local.id) | filterFutureEvents | reverse -%}
+		{% if localEvents and localEvents.length > 0 %}
+		<section class="local-events">
+			<h2>Eventos neste local</h2>
+			<div class="event-list">
+			{%- for event in localEvents %}
+				<a href="{{ event.url }}" class="event-list-item">
+					<div class="event-list-image" style="background-image: url('{{ event.data.heroImage }}')"></div>
+					<div class="event-list-info">
+						<h3 class="event-list-title">{{ event.data.title }}</h3>
+						<time class="event-list-date" datetime="{{ event.date | htmlDateString }}">{{ event.date | readableDate("dd 'de' MMMM, yyyy") }}</time>
+					</div>
+				</a>
+			{%- endfor %}
+			</div>
+		</section>
+		{% else %}
+		<section class="local-events">
+			<h2>Eventos neste local</h2>
+			<p class="no-events">Nenhum evento programado no momento.</p>
+		</section>
+		{% endif %}
+	</div>
+</article>

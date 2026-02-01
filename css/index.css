@@ -1301,4 +1301,245 @@ a.event-card:hover::before,
 	.contact-form-container {
 		padding: 2rem;
 	}
+
+	/* Locais Grid Mobile */
+	.locais-grid {
+		grid-template-columns: 1fr;
+	}
+
+	/* Local Detail Mobile */
+	.local-header {
+		padding: 1.5rem;
+	}
+
+	.local-title {
+		font-size: 2rem;
+	}
+}
+
+/* ===================================
+   Locais (Venues) Styles
+   =================================== */
+
+/* Locais Index Page */
+.locais-section {
+	padding: 4rem 0 6rem;
+	background-color: var(--background-color);
+}
+
+.locais-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.5rem;
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.local-card {
+	background: var(--background-card);
+	border: 1px solid var(--border-color);
+	border-radius: 12px;
+	padding: 0;
+	transition: all 0.3s ease;
+	text-decoration: none;
+	color: inherit;
+	overflow: hidden;
+}
+
+.local-card:visited,
+.local-card:link {
+	color: inherit;
+}
+
+.local-card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 8px 24px rgba(255, 87, 51, 0.15);
+	border-color: rgba(255, 87, 51, 0.4);
+}
+
+.local-card-content {
+	padding: 1.5rem;
+}
+
+.local-card-type {
+	display: inline-block;
+	font-size: 0.75rem;
+	color: var(--brand-orange);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+
+.local-card-name {
+	font-family: var(--font-family-headings);
+	font-size: 1.25rem;
+	font-weight: 600;
+	margin: 0 0 0.5rem;
+	color: var(--text-color);
+}
+
+.local-card-address {
+	font-size: 0.875rem;
+	color: var(--text-color-secondary);
+	margin: 0 0 0.75rem;
+}
+
+.local-card-events {
+	display: inline-block;
+	font-size: 0.75rem;
+	background: var(--background-secondary);
+	color: var(--text-color-secondary);
+	padding: 0.25rem 0.75rem;
+	border-radius: 12px;
+	font-weight: 500;
+}
+
+/* Local Detail Page */
+.local-detail {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.local-detail-content {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 2rem 2rem 4rem;
+}
+
+.local-header {
+	text-align: center;
+	margin-bottom: 2rem;
+	padding: 2rem;
+	background: var(--background-secondary);
+	border-radius: 12px;
+}
+
+.local-type {
+	display: inline-block;
+	font-size: 0.875rem;
+	color: var(--brand-orange);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-weight: 600;
+	margin-bottom: 0.5rem;
+}
+
+.local-title {
+	font-family: var(--font-family-headings);
+	font-size: 2.5rem;
+	font-weight: 600;
+	margin: 0 0 0.5rem;
+	color: var(--text-color);
+}
+
+.local-address {
+	font-size: 1.125rem;
+	color: var(--text-color-secondary);
+	margin: 0;
+}
+
+.local-description {
+	margin-bottom: 2rem;
+}
+
+.local-description p {
+	font-size: 1.0625rem;
+	line-height: 1.7;
+	color: var(--text-color);
+}
+
+.local-info {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-bottom: 3rem;
+	padding-bottom: 2rem;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.local-features {
+	display: flex;
+	gap: 0.75rem;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	flex-wrap: wrap;
+}
+
+.feature-item {
+	display: inline-block;
+	padding: 0.5rem 1rem;
+	background: var(--background-secondary);
+	border-radius: 20px;
+	font-size: 0.875rem;
+	color: var(--text-color-secondary);
+	font-weight: 500;
+}
+
+.feature-accessibility::before {
+	content: "♿ ";
+}
+
+.feature-kids::before {
+	content: "👨‍👩‍👧 ";
+}
+
+.local-link {
+	display: inline-block;
+	padding: 0.75rem 1.5rem;
+	background: transparent;
+	color: var(--brand-orange) !important;
+	border: 2px solid var(--brand-orange);
+	border-radius: 8px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: all 0.2s ease;
+}
+
+.local-link:hover {
+	background: var(--brand-orange);
+	color: white !important;
+}
+
+.local-events {
+	margin-top: 2rem;
+}
+
+.local-events h2 {
+	font-family: var(--font-family-headings);
+	font-size: 1.75rem;
+	margin: 0 0 1.5rem;
+	color: var(--text-color);
+}
+
+.local-events .no-events {
+	color: var(--text-color-secondary);
+	font-style: italic;
+}
+
+/* Location display in event detail */
+.event-detail-location {
+	display: flex;
+	flex-direction: column;
+	gap: 0.25rem;
+}
+
+.location-name {
+	font-weight: 600;
+	color: var(--text-color);
+}
+
+.location-address {
+	font-size: 0.875rem;
+	color: var(--text-color-secondary);
+	font-weight: 400;
+}
+
+@media (max-width: 1024px) {
+	.locais-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
 }

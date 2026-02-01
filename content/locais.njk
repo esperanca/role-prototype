@@ -1,0 +1,34 @@
+---js
+const eleventyNavigation = {
+	key: "locais",
+	order: 3
+};
+---
+<section class="hero-section">
+	<div class="container">
+		<h1>Locais</h1>
+		<p>Teatros, museus, parques e espaços culturais de São Paulo</p>
+	</div>
+</section>
+
+<section class="locais-section">
+	<div class="container">
+		<div class="locais-grid">
+		{%- for localId, local in locais %}
+			{% if local.ativo %}
+			{%- set eventCount = collections.events | getEventsByLocal(local.id) | filterFutureEvents | length -%}
+			<a href="/locais/{{ local.id }}/" class="local-card">
+				<div class="local-card-content">
+					<span class="local-card-type">{{ local.tipo | replace("_", " ") }}</span>
+					<h3 class="local-card-name">{{ local.nome }}</h3>
+					<p class="local-card-address">{{ local.bairro }}</p>
+					{% if eventCount > 0 %}
+					<span class="local-card-events">{{ eventCount }} evento{% if eventCount > 1 %}s{% endif %}</span>
+					{% endif %}
+				</div>
+			</a>
+			{% endif %}
+		{%- endfor %}
+		</div>
+	</div>
+</section>
