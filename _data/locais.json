@@ -274,5 +274,41 @@
     "acessibilidade": true,
     "criancas": true,
     "ativo": true
+  },
+  "itau-cultural": {
+    "id": "itau-cultural",
+    "nome": "Itaú Cultural",
+    "endereco": "Av. Paulista, 149",
+    "bairro": "Bela Vista",
+    "tipo": "centro_cultural",
+    "descricao": "Instituto cultural com exposições, shows, teatro, cinema e acervo digital.",
+    "link": "https://www.itaucultural.org.br/",
+    "acessibilidade": true,
+    "criancas": true,
+    "ativo": true
+  },
+  "ccsp": {
+    "id": "ccsp",
+    "nome": "Centro Cultural São Paulo",
+    "endereco": "Rua Vergueiro, 1000",
+    "bairro": "Paraíso",
+    "tipo": "centro_cultural",
+    "descricao": "Um dos maiores centros culturais da América Latina, com biblioteca, teatro e exposições.",
+    "link": "https://centrocultural.sp.gov.br/",
+    "acessibilidade": true,
+    "criancas": true,
+    "ativo": true
+  },
+  "japan-house": {
+    "id": "japan-house",
+    "nome": "Japan House São Paulo",
+    "endereco": "Av. Paulista, 52",
+    "bairro": "Bela Vista",
+    "tipo": "centro_cultural",
+    "descricao": "Centro cultural japonês com exposições, gastronomia e eventos culturais.",
+    "link": "https://www.japanhousesp.com.br/",
+    "acessibilidade": true,
+    "criancas": true,
+    "ativo": true
   }
 }

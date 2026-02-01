@@ -1,5 +1,9 @@
 import { scrapeSesc } from './sesc.js';
 import { scrapeAgendaSP } from './agendasp.js';
+import { scrapeItauCultural } from './itaucultural.js';
+import { scrapeCCSP } from './ccsp.js';
+import { scrapePinacoteca, scrapeMASP, scrapeJapanHouse } from './museus.js';
+import { scrapeCatracaLivre } from './catracalivre.js';
 
 export const scrapers = {
   sesc: {
@@ -10,6 +14,36 @@ export const scrapers = {
   agendasp: {
     name: 'Agenda Cultural SP',
     scrape: scrapeAgendaSP,
+    enabled: true
+  },
+  itaucultural: {
+    name: 'Itaú Cultural',
+    scrape: scrapeItauCultural,
+    enabled: true
+  },
+  ccsp: {
+    name: 'Centro Cultural São Paulo',
+    scrape: scrapeCCSP,
+    enabled: true
+  },
+  pinacoteca: {
+    name: 'Pinacoteca de São Paulo',
+    scrape: scrapePinacoteca,
+    enabled: true
+  },
+  masp: {
+    name: 'MASP',
+    scrape: scrapeMASP,
+    enabled: true
+  },
+  japanhouse: {
+    name: 'Japan House',
+    scrape: scrapeJapanHouse,
+    enabled: true
+  },
+  catracalivre: {
+    name: 'Catraca Livre',
+    scrape: scrapeCatracaLivre,
     enabled: true
   }
 };

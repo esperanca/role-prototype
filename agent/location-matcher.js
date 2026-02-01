@@ -71,7 +71,16 @@ export function matchLocal(localNome, locais) {
     'memorial da américa latina': 'memorial-america-latina',
     'memorial da america latina': 'memorial-america-latina',
     'espaco unimed': 'espaco-unimed',
-    'espaço unimed': 'espaco-unimed'
+    'espaço unimed': 'espaco-unimed',
+    'itau cultural': 'itau-cultural',
+    'itaú cultural': 'itau-cultural',
+    'instituto itau cultural': 'itau-cultural',
+    'ccsp': 'ccsp',
+    'centro cultural são paulo': 'ccsp',
+    'centro cultural sao paulo': 'ccsp',
+    'japan house': 'japan-house',
+    'japan house são paulo': 'japan-house',
+    'japan house sao paulo': 'japan-house'
   };
 
   const aliasMatch = aliases[normalized];
