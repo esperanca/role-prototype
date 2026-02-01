@@ -1,0 +1,123 @@
+---
+layout: layouts/base.njk
+title: Painel de Curadoria
+---
+<section class="curadoria-header">
+	<div class="container">
+		<h1>Painel de Curadoria</h1>
+		<p>Gerencie eventos e fontes de dados do rolê</p>
+	</div>
+</section>
+
+<section class="curadoria-section">
+	<div class="container">
+		<div class="curadoria-grid">
+			<!-- Fontes de Dados -->
+			<div class="curadoria-card">
+				<div class="curadoria-card-header">
+					<h2>Fontes de Dados</h2>
+					<span class="curadoria-badge">{{ fontes | getKeys | length }} configuradas</span>
+				</div>
+				<div class="fontes-list">
+					{%- for fonteId, fonte in fontes %}
+					<div class="fonte-item {% if fonte.ativo %}fonte-ativa{% else %}fonte-inativa{% endif %}">
+						<div class="fonte-status">
+							{% if fonte.ativo %}
+							<span class="status-dot status-active"></span>
+							{% else %}
+							<span class="status-dot status-inactive"></span>
+							{% endif %}
+						</div>
+						<div class="fonte-info">
+							<h3>{{ fonte.nome }}</h3>
+							<p class="fonte-descricao">{{ fonte.descricao }}</p>
+							<div class="fonte-meta">
+								<span class="fonte-tipo">{{ fonte.tipo }}</span>
+								<span class="fonte-frequencia">{{ fonte.frequencia }}</span>
+								<a href="{{ fonte.url }}" target="_blank" rel="noopener" class="fonte-link">visitar</a>
+							</div>
+						</div>
+					</div>
+					{%- endfor %}
+				</div>
+			</div>
+
+			<!-- Estatísticas -->
+			<div class="curadoria-card">
+				<div class="curadoria-card-header">
+					<h2>Estatísticas</h2>
+				</div>
+				<div class="stats-grid">
+					<div class="stat-item">
+						<span class="stat-number">{{ collections.events | length }}</span>
+						<span class="stat-label">Eventos cadastrados</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-number">{{ collections.events | filterFutureEvents | length }}</span>
+						<span class="stat-label">Eventos futuros</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-number">{{ locais | getKeys | length }}</span>
+						<span class="stat-label">Locais</span>
+					</div>
+					<div class="stat-item">
+						{%- set fontesAtivas = 0 -%}
+						{%- for fonteId, fonte in fontes %}
+							{%- if fonte.ativo %}{% set fontesAtivas = fontesAtivas + 1 %}{% endif -%}
+						{%- endfor -%}
+						<span class="stat-number">{{ fontesAtivas }}</span>
+						<span class="stat-label">Fontes ativas</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Rascunhos Pendentes -->
+		<div class="curadoria-card curadoria-card-full">
+			<div class="curadoria-card-header">
+				<h2>Rascunhos Pendentes</h2>
+				<span class="curadoria-badge curadoria-badge-warning">aguardando curadoria</span>
+			</div>
+			<div class="rascunhos-container">
+				<p class="rascunhos-empty">
+					Nenhum rascunho pendente no momento.<br>
+					<span class="rascunhos-hint">Execute o agente de scraping para coletar novos eventos:</span>
+				</p>
+				<pre class="code-block"><code>cd agent && npm run scrape</code></pre>
+				<p class="rascunhos-hint">Os rascunhos aparecerão em <code>rascunhos/pendentes.json</code></p>
+			</div>
+		</div>
+
+		<!-- Como usar -->
+		<div class="curadoria-card curadoria-card-full">
+			<div class="curadoria-card-header">
+				<h2>Como Funciona</h2>
+			</div>
+			<div class="workflow-steps">
+				<div class="workflow-step">
+					<div class="step-number">1</div>
+					<div class="step-content">
+						<h3>Coleta</h3>
+						<p>O agente faz scraping das fontes ativas e gera rascunhos normalizados</p>
+						<code>node agent/index.js</code>
+					</div>
+				</div>
+				<div class="workflow-step">
+					<div class="step-number">2</div>
+					<div class="step-content">
+						<h3>Curadoria</h3>
+						<p>Revise os rascunhos, edite títulos, vincule locais e aprove</p>
+					</div>
+				</div>
+				<div class="workflow-step">
+					<div class="step-number">3</div>
+					<div class="step-content">
+						<h3>Publicação</h3>
+						<p>Eventos aprovados viram arquivos .md e são publicados no próximo build</p>
+						<code>git push → Netlify rebuild</code>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

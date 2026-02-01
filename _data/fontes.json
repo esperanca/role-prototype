@@ -1,0 +1,47 @@
+{
+  "sesc": {
+    "id": "sesc",
+    "nome": "SESC São Paulo",
+    "url": "https://www.sescsp.org.br/programacao",
+    "tipo": "centro_cultural",
+    "descricao": "Programação cultural das unidades do SESC em São Paulo",
+    "frequencia": "diária",
+    "ativo": true
+  },
+  "agendasp": {
+    "id": "agendasp",
+    "nome": "Agenda Cultural SP",
+    "url": "https://www.prefeitura.sp.gov.br/cidade/secretarias/cultura/agenda_cultural",
+    "tipo": "governo",
+    "descricao": "Agenda cultural oficial da Prefeitura de São Paulo",
+    "frequencia": "diária",
+    "ativo": true
+  },
+  "guiafolha": {
+    "id": "guiafolha",
+    "nome": "Guia Folha",
+    "url": "https://guia.folha.uol.com.br",
+    "tipo": "midia",
+    "descricao": "Guia de eventos e cultura da Folha de S.Paulo",
+    "frequencia": "diária",
+    "ativo": false
+  },
+  "sympla": {
+    "id": "sympla",
+    "nome": "Sympla",
+    "url": "https://www.sympla.com.br/eventos/sao-paulo-sp",
+    "tipo": "ticketing",
+    "descricao": "Plataforma de venda de ingressos e eventos",
+    "frequencia": "diária",
+    "ativo": false
+  },
+  "eventbrite": {
+    "id": "eventbrite",
+    "nome": "Eventbrite",
+    "url": "https://www.eventbrite.com.br/d/brazil--s%C3%A3o-paulo/events/",
+    "tipo": "ticketing",
+    "descricao": "Plataforma internacional de eventos",
+    "frequencia": "diária",
+    "ativo": false
+  }
+}
