@@ -1,7 +1,7 @@
 ---
 title: "Natal Iluminado 2025"
 date: 2026-01-06
-location: "Diversos pontos de São Paulo"
+local_id: "diversos-pontos-sp"
 tags: ["natal", "cidade", "fotografia", "passeio_noturno"]
 heroImage: "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?q=80&w=2000"
 ---

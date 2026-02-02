@@ -1,7 +1,7 @@
 ---
 title: "Batalha Grajaú Rap City"
 date: 2025-12-12
-location: "Polo Cultural Grajaú"
+local_id: "polo-cultural-grajau"
 tags: ["batalha_de_MC", "hiphop", "juventude", "periferia"]
 heroImage: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?q=80&w=2000"
 ---

@@ -1,7 +1,7 @@
 ---
 title: "Dining in the Dark: Jantar às Cegas"
 date: 2025-12-12
-location: "Pullman Vila Olímpia"
+local_id: "pullman-vila-olimpia"
 tags: ["gastronomia", "experiência_sensorial", "casal", "evento_tematizado"]
 heroImage: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000"
 ---

@@ -1,0 +1,128 @@
+{
+  "sesc": {
+    "id": "sesc",
+    "nome": "SESC São Paulo",
+    "url": "https://www.sescsp.org.br/programacao",
+    "tipo": "centro_cultural",
+    "descricao": "Programação cultural das unidades do SESC em São Paulo",
+    "frequencia": "diária",
+    "ativo": true
+  },
+  "agendasp": {
+    "id": "agendasp",
+    "nome": "Agenda Cultural SP",
+    "url": "https://www.prefeitura.sp.gov.br/cidade/secretarias/cultura/agenda_cultural",
+    "tipo": "governo",
+    "descricao": "Agenda cultural oficial da Prefeitura de São Paulo",
+    "frequencia": "diária",
+    "ativo": true
+  },
+  "itaucultural": {
+    "id": "itaucultural",
+    "nome": "Itaú Cultural",
+    "url": "https://www.itaucultural.org.br/agenda",
+    "tipo": "centro_cultural",
+    "descricao": "Instituto cultural com exposições, shows, teatro e cinema",
+    "frequencia": "diária",
+    "ativo": true
+  },
+  "ccsp": {
+    "id": "ccsp",
+    "nome": "Centro Cultural São Paulo",
+    "url": "https://centrocultural.sp.gov.br/programacao/",
+    "tipo": "centro_cultural",
+    "descricao": "Um dos maiores centros culturais da América Latina",
+    "frequencia": "diária",
+    "ativo": true
+  },
+  "pinacoteca": {
+    "id": "pinacoteca",
+    "nome": "Pinacoteca de São Paulo",
+    "url": "https://pinacoteca.org.br/programacao/",
+    "tipo": "museu",
+    "descricao": "Museu de arte mais antigo de São Paulo",
+    "frequencia": "semanal",
+    "ativo": true
+  },
+  "masp": {
+    "id": "masp",
+    "nome": "MASP",
+    "url": "https://masp.org.br/programacao",
+    "tipo": "museu",
+    "descricao": "Museu de Arte de São Paulo Assis Chateaubriand",
+    "frequencia": "semanal",
+    "ativo": true
+  },
+  "japanhouse": {
+    "id": "japanhouse",
+    "nome": "Japan House",
+    "url": "https://www.japanhousesp.com.br/programacao/",
+    "tipo": "centro_cultural",
+    "descricao": "Centro cultural japonês na Av. Paulista",
+    "frequencia": "semanal",
+    "ativo": true
+  },
+  "catracalivre": {
+    "id": "catracalivre",
+    "nome": "Catraca Livre",
+    "url": "https://catracalivre.com.br/agenda/sp/",
+    "tipo": "midia",
+    "descricao": "Portal de eventos gratuitos e acessíveis",
+    "frequencia": "diária",
+    "ativo": true
+  },
+  "guiafolha": {
+    "id": "guiafolha",
+    "nome": "Guia Folha",
+    "url": "https://guia.folha.uol.com.br",
+    "tipo": "midia",
+    "descricao": "Guia de eventos e cultura da Folha de S.Paulo",
+    "frequencia": "diária",
+    "ativo": false
+  },
+  "vejasp": {
+    "id": "vejasp",
+    "nome": "Veja São Paulo",
+    "url": "https://vejasp.abril.com.br/agenda/",
+    "tipo": "midia",
+    "descricao": "Agenda cultural da revista Veja São Paulo",
+    "frequencia": "diária",
+    "ativo": false
+  },
+  "timeout": {
+    "id": "timeout",
+    "nome": "Time Out São Paulo",
+    "url": "https://www.timeout.com.br/sao-paulo/coisas-para-fazer",
+    "tipo": "midia",
+    "descricao": "Guia internacional de eventos e lazer",
+    "frequencia": "diária",
+    "ativo": false
+  },
+  "sympla": {
+    "id": "sympla",
+    "nome": "Sympla",
+    "url": "https://www.sympla.com.br/eventos/sao-paulo-sp",
+    "tipo": "ticketing",
+    "descricao": "Plataforma de venda de ingressos e eventos",
+    "frequencia": "diária",
+    "ativo": false
+  },
+  "eventbrite": {
+    "id": "eventbrite",
+    "nome": "Eventbrite",
+    "url": "https://www.eventbrite.com.br/d/brazil--s%C3%A3o-paulo/events/",
+    "tipo": "ticketing",
+    "descricao": "Plataforma internacional de eventos",
+    "frequencia": "diária",
+    "ativo": false
+  },
+  "ingressorapido": {
+    "id": "ingressorapido",
+    "nome": "Ingresso Rápido",
+    "url": "https://www.ingressorapido.com.br/sao-paulo",
+    "tipo": "ticketing",
+    "descricao": "Venda de ingressos para shows e espetáculos",
+    "frequencia": "diária",
+    "ativo": false
+  }
+}

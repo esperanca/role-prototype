@@ -1,7 +1,7 @@
 ---
 title: "Norma Bengell – O Brasil em Revista"
 date: 2025-12-31
-location: "Teatro do SESI-SP"
+local_id: "teatro-sesi-sp"
 tags: ["teatro_musical", "biografia", "cultura_brasileira", "avenida_paulista"]
 heroImage: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2000"
 ---

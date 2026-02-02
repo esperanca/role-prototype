@@ -1,7 +1,7 @@
 ---
 title: "Festival Nova Brasil"
 date: 2025-12-06
-location: "Parque Villa-Lobos"
+local_id: "parque-villa-lobos"
 tags: ["festival", "música", "ao ar livre"]
 heroImage: "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?q=80&w=2000"
 ---

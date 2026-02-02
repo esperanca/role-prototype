@@ -1,7 +1,7 @@
 ---
 title: "Ópera Wozzeck"
 date: 2025-12-06
-location: "Sala São Paulo"
+local_id: "sala-sao-paulo"
 tags: ["ópera", "música clássica", "osesp"]
 heroImage: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?q=80&w=2000"
 ---

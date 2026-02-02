@@ -1,0 +1,153 @@
+---js
+const eleventyNavigation = {
+	key: "locais",
+	order: 3
+};
+---
+<section class="hero-section">
+	<div class="container">
+		<h1>Locais</h1>
+		<p>Teatros, museus, parques e espaços culturais de São Paulo</p>
+	</div>
+</section>
+
+<section class="locais-section">
+	<div class="container">
+		<!-- Filtros -->
+		<div class="filters-bar" id="filters-bar">
+			<div class="filter-group">
+				<label for="filter-tipo">Tipo</label>
+				<select id="filter-tipo" class="filter-select">
+					<option value="">Todos</option>
+					<option value="museu">Museu</option>
+					<option value="teatro">Teatro</option>
+					<option value="centro_cultural">Centro Cultural</option>
+					<option value="parque">Parque</option>
+					<option value="casa_de_shows">Casa de Shows</option>
+					<option value="sala_de_concertos">Sala de Concertos</option>
+					<option value="arena">Arena</option>
+					<option value="biblioteca">Biblioteca</option>
+				</select>
+			</div>
+			<div class="filter-group">
+				<label for="filter-bairro">Bairro</label>
+				<select id="filter-bairro" class="filter-select">
+					<option value="">Todos</option>
+					{%- set bairros = [] -%}
+					{%- for localId, local in locais %}
+						{%- if local.ativo and local.bairro and local.bairro not in bairros %}
+							{%- set bairros = (bairros.push(local.bairro), bairros) -%}
+						{%- endif %}
+					{%- endfor %}
+					{%- for bairro in bairros | sort %}
+					<option value="{{ bairro }}">{{ bairro }}</option>
+					{%- endfor %}
+				</select>
+			</div>
+			<div class="filter-group filter-checkbox">
+				<label>
+					<input type="checkbox" id="filter-acessibilidade">
+					Acessibilidade
+				</label>
+			</div>
+			<div class="filter-group filter-checkbox">
+				<label>
+					<input type="checkbox" id="filter-criancas">
+					Para crianças
+				</label>
+			</div>
+			<button class="filter-clear" id="filter-clear">Limpar filtros</button>
+		</div>
+
+		<p class="filter-results" id="filter-results"></p>
+
+		<div class="locais-grid" id="locais-grid">
+		{%- for localId, local in locais %}
+			{% if local.ativo %}
+			{%- set eventCount = collections.events | getEventsByLocal(local.id) | filterFutureEvents | length -%}
+			<a href="/locais/{{ local.id }}/" class="local-card"
+			   data-tipo="{{ local.tipo }}"
+			   data-bairro="{{ local.bairro }}"
+			   data-acessibilidade="{{ local.acessibilidade }}"
+			   data-criancas="{{ local.criancas }}">
+				<div class="local-card-content">
+					<span class="local-card-type">{{ local.tipo | replace("_", " ") }}</span>
+					<h3 class="local-card-name">{{ local.nome }}</h3>
+					<p class="local-card-address">{{ local.bairro }}</p>
+					<div class="local-card-features">
+						{% if local.acessibilidade %}<span class="local-feature" title="Acessibilidade">♿</span>{% endif %}
+						{% if local.criancas %}<span class="local-feature" title="Para crianças">👨‍👩‍👧</span>{% endif %}
+					</div>
+					{% if eventCount > 0 %}
+					<span class="local-card-events">{{ eventCount }} evento{% if eventCount > 1 %}s{% endif %}</span>
+					{% endif %}
+				</div>
+			</a>
+			{% endif %}
+		{%- endfor %}
+		</div>
+	</div>
+</section>
+
+<script>
+(function() {
+	const filterTipo = document.getElementById('filter-tipo');
+	const filterBairro = document.getElementById('filter-bairro');
+	const filterAcessibilidade = document.getElementById('filter-acessibilidade');
+	const filterCriancas = document.getElementById('filter-criancas');
+	const filterClear = document.getElementById('filter-clear');
+	const filterResults = document.getElementById('filter-results');
+	const locaisGrid = document.getElementById('locais-grid');
+
+	if (!locaisGrid) return;
+
+	const items = locaisGrid.querySelectorAll('.local-card');
+
+	function applyFilters() {
+		const tipo = filterTipo.value.toLowerCase();
+		const bairro = filterBairro.value;
+		const acessibilidade = filterAcessibilidade.checked;
+		const criancas = filterCriancas.checked;
+
+		let visible = 0;
+
+		items.forEach(item => {
+			const itemTipo = (item.dataset.tipo || '').toLowerCase();
+			const itemBairro = item.dataset.bairro || '';
+			const itemAcessibilidade = item.dataset.acessibilidade === 'true';
+			const itemCriancas = item.dataset.criancas === 'true';
+
+			const matchTipo = !tipo || itemTipo === tipo;
+			const matchBairro = !bairro || itemBairro === bairro;
+			const matchAcessibilidade = !acessibilidade || itemAcessibilidade;
+			const matchCriancas = !criancas || itemCriancas;
+
+			if (matchTipo && matchBairro && matchAcessibilidade && matchCriancas) {
+				item.style.display = '';
+				visible++;
+			} else {
+				item.style.display = 'none';
+			}
+		});
+
+		if (tipo || bairro || acessibilidade || criancas) {
+			filterResults.textContent = `${visible} loca${visible !== 1 ? 'is' : 'l'} encontrado${visible !== 1 ? 's' : ''}`;
+		} else {
+			filterResults.textContent = '';
+		}
+	}
+
+	filterTipo.addEventListener('change', applyFilters);
+	filterBairro.addEventListener('change', applyFilters);
+	filterAcessibilidade.addEventListener('change', applyFilters);
+	filterCriancas.addEventListener('change', applyFilters);
+
+	filterClear.addEventListener('click', function() {
+		filterTipo.value = '';
+		filterBairro.value = '';
+		filterAcessibilidade.checked = false;
+		filterCriancas.checked = false;
+		applyFilters();
+	});
+})();
+</script>

@@ -1,7 +1,7 @@
 ---
 title: "Natal Ibirapuera – Bosque Encantado"
 date: 2025-12-25
-location: "Parque Ibirapuera"
+local_id: "parque-ibirapuera"
 tags: ["natal", "instalacao_luminosa", "ar_livre", "família"]
 heroImage: "https://images.unsplash.com/photo-1512389142860-9c449e58a543?q=80&w=2000"
 ---

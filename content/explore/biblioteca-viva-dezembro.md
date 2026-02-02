@@ -1,7 +1,7 @@
 ---
 title: "Programa Biblioteca Viva – Dezembro 2025"
 date: 2025-12-20
-location: "Bibliotecas públicas de São Paulo"
+local_id: "bibliotecas-sp"
 tags: ["infantil", "contação_de_histórias", "bibliotecas", "atividades_familia"]
 heroImage: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2000"
 ---

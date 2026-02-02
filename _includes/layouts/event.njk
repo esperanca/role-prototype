@@ -1,6 +1,7 @@
 ---
 layout: layouts/base.njk
 ---
+{% set local = local_id | getLocal(locais) %}
 <article class="event-detail">
 	<div class="event-detail-content">
 		{% if heroImage %}
@@ -16,7 +17,14 @@ layout: layouts/base.njk
 			</time>
 			{% endif %}
 
-			{% if location %}
+			{% if local %}
+			<div class="event-detail-location">
+				<span class="location-name">{{ local.nome }}</span>
+				{% if local.endereco and local.bairro %}
+				<span class="location-address">{{ local.endereco }} – {{ local.bairro }}</span>
+				{% endif %}
+			</div>
+			{% elif location %}
 			<span class="event-detail-location">{{ location }}</span>
 			{% endif %}
 		</div>

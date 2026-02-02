@@ -54,4 +54,16 @@ export default function(eleventyConfig) {
 			return eventDate >= now;
 		});
 	});
+
+	// Get location data by ID from locais.json
+	eleventyConfig.addFilter("getLocal", (localId, locais) => {
+		if (!localId || !locais) return null;
+		return locais[localId] || null;
+	});
+
+	// Get events by local_id
+	eleventyConfig.addFilter("getEventsByLocal", (events, localId) => {
+		if (!events || !localId) return [];
+		return events.filter(event => event.data.local_id === localId);
+	});
 };

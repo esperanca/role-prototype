@@ -1,7 +1,7 @@
 ---
 title: "Candlelight: Vivaldi, As Quatro Estações"
 date: 2025-12-06
-location: "Catedral da Sé de São Paulo"
+local_id: "catedral-da-se"
 tags: ["música clássica", "concerto", "vivaldi"]
 heroImage: "https://images.unsplash.com/photo-1478147427282-58a87a120781?q=80&w=2000"
 ---

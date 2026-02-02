@@ -14,15 +14,75 @@ const eleventyNavigation = {
 <section class="explore-section">
 	<div class="container">
 		{%- set futureEvents = collections.events | filterFutureEvents | reverse -%}
+
+		<!-- Filtros -->
+		<div class="filters-bar" id="filters-bar">
+			<div class="filter-group">
+				<label for="filter-bairro">Bairro</label>
+				<select id="filter-bairro" class="filter-select">
+					<option value="">Todos</option>
+					{%- set bairros = [] -%}
+					{%- for event in futureEvents %}
+						{%- set eventLocal = event.data.local_id | getLocal(locais) -%}
+						{%- if eventLocal and eventLocal.bairro and eventLocal.bairro not in bairros %}
+							{%- set bairros = (bairros.push(eventLocal.bairro), bairros) -%}
+						{%- endif %}
+					{%- endfor %}
+					{%- for bairro in bairros | sort %}
+					<option value="{{ bairro }}">{{ bairro }}</option>
+					{%- endfor %}
+				</select>
+			</div>
+			<div class="filter-group">
+				<label for="filter-tipo">Tipo de local</label>
+				<select id="filter-tipo" class="filter-select">
+					<option value="">Todos</option>
+					<option value="museu">Museu</option>
+					<option value="teatro">Teatro</option>
+					<option value="centro_cultural">Centro Cultural</option>
+					<option value="parque">Parque</option>
+					<option value="casa_de_shows">Casa de Shows</option>
+					<option value="sala_de_concertos">Sala de Concertos</option>
+				</select>
+			</div>
+			<div class="filter-group">
+				<label for="filter-tag">Categoria</label>
+				<select id="filter-tag" class="filter-select">
+					<option value="">Todas</option>
+					{%- set allTags = [] -%}
+					{%- for event in futureEvents %}
+						{%- for tag in event.data.tags %}
+							{%- if tag not in allTags and tag != "events" %}
+								{%- set allTags = (allTags.push(tag), allTags) -%}
+							{%- endif %}
+						{%- endfor %}
+					{%- endfor %}
+					{%- for tag in allTags | sort %}
+					<option value="{{ tag }}">{{ tag }}</option>
+					{%- endfor %}
+				</select>
+			</div>
+			<button class="filter-clear" id="filter-clear">Limpar filtros</button>
+		</div>
+
+		<p class="filter-results" id="filter-results"></p>
+
 		{% if futureEvents and futureEvents.length > 0 %}
-		<div class="event-list">
+		<div class="event-list" id="event-list">
 		{%- for event in futureEvents %}
-			<a href="{{ event.url }}" class="event-list-item{% if event.url == url %} event-list-item-active{% endif %}">
+			{%- set eventLocal = event.data.local_id | getLocal(locais) -%}
+			<a href="{{ event.url }}"
+			   class="event-list-item{% if event.url == url %} event-list-item-active{% endif %}"
+			   data-bairro="{{ eventLocal.bairro if eventLocal else '' }}"
+			   data-tipo="{{ eventLocal.tipo if eventLocal else '' }}"
+			   data-tags="{{ event.data.tags | join(',') if event.data.tags else '' }}">
 				<div class="event-list-image" style="background-image: url('{{ event.data.heroImage }}')"></div>
 				<div class="event-list-info">
 					<h3 class="event-list-title">{% if event.data.title %}{{ event.data.title }}{% else %}<code>{{ event.url }}</code>{% endif %}</h3>
 					<time class="event-list-date" datetime="{{ event.date | htmlDateString }}">{{ event.date | readableDate("dd 'de' MMMM, yyyy") }}</time>
-					{% if event.data.location %}
+					{% if eventLocal %}
+					<span class="event-list-location">{{ eventLocal.nome }}</span>
+					{% elif event.data.location %}
 					<span class="event-list-location">{{ event.data.location }}</span>
 					{% endif %}
 				</div>
@@ -34,3 +94,60 @@ const eleventyNavigation = {
 		{% endif %}
 	</div>
 </section>
+
+<script>
+(function() {
+	const filterBairro = document.getElementById('filter-bairro');
+	const filterTipo = document.getElementById('filter-tipo');
+	const filterTag = document.getElementById('filter-tag');
+	const filterClear = document.getElementById('filter-clear');
+	const filterResults = document.getElementById('filter-results');
+	const eventList = document.getElementById('event-list');
+
+	if (!eventList) return;
+
+	const items = eventList.querySelectorAll('.event-list-item');
+
+	function applyFilters() {
+		const bairro = filterBairro.value.toLowerCase();
+		const tipo = filterTipo.value.toLowerCase();
+		const tag = filterTag.value.toLowerCase();
+
+		let visible = 0;
+
+		items.forEach(item => {
+			const itemBairro = (item.dataset.bairro || '').toLowerCase();
+			const itemTipo = (item.dataset.tipo || '').toLowerCase();
+			const itemTags = (item.dataset.tags || '').toLowerCase();
+
+			const matchBairro = !bairro || itemBairro === bairro;
+			const matchTipo = !tipo || itemTipo === tipo;
+			const matchTag = !tag || itemTags.includes(tag);
+
+			if (matchBairro && matchTipo && matchTag) {
+				item.style.display = '';
+				visible++;
+			} else {
+				item.style.display = 'none';
+			}
+		});
+
+		if (bairro || tipo || tag) {
+			filterResults.textContent = `${visible} evento${visible !== 1 ? 's' : ''} encontrado${visible !== 1 ? 's' : ''}`;
+		} else {
+			filterResults.textContent = '';
+		}
+	}
+
+	filterBairro.addEventListener('change', applyFilters);
+	filterTipo.addEventListener('change', applyFilters);
+	filterTag.addEventListener('change', applyFilters);
+
+	filterClear.addEventListener('click', function() {
+		filterBairro.value = '';
+		filterTipo.value = '';
+		filterTag.value = '';
+		applyFilters();
+	});
+})();
+</script>

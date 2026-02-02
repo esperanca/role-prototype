@@ -11,6 +11,49 @@ const eleventyNavigation = {
 	</div>
 </section>
 
+<section class="featured-section">
+	<div class="container">
+		<div class="featured-grid">
+			<div class="featured-column">
+				<h2>Eventos em Destaque</h2>
+				<div class="featured-list">
+					{%- set featuredEvents = (collections.events | filterFutureEvents | reverse).slice(0, 3) -%}
+					{%- for event in featuredEvents %}
+					{%- set eventLocal = event.data.local_id | getLocal(locais) -%}
+					<a href="{{ event.url }}" class="featured-item">
+						<div class="featured-item-image" style="background-image: url('{{ event.data.heroImage }}')"></div>
+						<div class="featured-item-info">
+							<span class="featured-item-date">{{ event.data.date | readableDate("dd MMM") }}</span>
+							<h3>{{ event.data.title }}</h3>
+							{% if eventLocal %}<span class="featured-item-location">{{ eventLocal.nome }}</span>{% endif %}
+						</div>
+					</a>
+					{%- endfor %}
+				</div>
+				<a href="/explore/" class="featured-link">Ver todos os eventos →</a>
+			</div>
+			<div class="featured-column">
+				<h2>Locais para Conhecer</h2>
+				<div class="featured-list">
+					{%- set featuredLocais = ["masp", "pinacoteca", "sala-sao-paulo"] -%}
+					{%- for localId in featuredLocais %}
+					{%- set local = localId | getLocal(locais) -%}
+					{%- set eventCount = collections.events | getEventsByLocal(localId) | filterFutureEvents | length -%}
+					<a href="/locais/{{ localId }}/" class="featured-item featured-item-local">
+						<div class="featured-item-info">
+							<span class="featured-item-type">{{ local.tipo | replace("_", " ") }}</span>
+							<h3>{{ local.nome }}</h3>
+							<span class="featured-item-location">{{ local.bairro }}{% if eventCount > 0 %} · {{ eventCount }} evento{% if eventCount > 1 %}s{% endif %}{% endif %}</span>
+						</div>
+					</a>
+					{%- endfor %}
+				</div>
+				<a href="/locais/" class="featured-link">Ver todos os locais →</a>
+			</div>
+		</div>
+	</div>
+</section>
+
 <section class="explore-section">
 	<h2>Explore</h2>
 	<div class="event-cards">

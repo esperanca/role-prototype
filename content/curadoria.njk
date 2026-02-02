@@ -1,0 +1,450 @@
+---
+layout: layouts/base.njk
+title: Painel de Curadoria
+---
+<section class="curadoria-header">
+	<div class="container">
+		<h1>Painel de Curadoria</h1>
+		<p>Gerencie eventos e fontes de dados do rolê</p>
+	</div>
+</section>
+
+<section class="curadoria-section">
+	<div class="container">
+		<div class="curadoria-grid">
+			<!-- Fontes de Dados -->
+			<div class="curadoria-card">
+				<div class="curadoria-card-header">
+					<h2>Fontes de Dados</h2>
+					<span class="curadoria-badge">{{ fontes | getKeys | length }} configuradas</span>
+				</div>
+				<div class="fontes-list">
+					{%- for fonteId, fonte in fontes %}
+					<div class="fonte-item {% if fonte.ativo %}fonte-ativa{% else %}fonte-inativa{% endif %}">
+						<div class="fonte-status">
+							{% if fonte.ativo %}
+							<span class="status-dot status-active"></span>
+							{% else %}
+							<span class="status-dot status-inactive"></span>
+							{% endif %}
+						</div>
+						<div class="fonte-info">
+							<h3>{{ fonte.nome }}</h3>
+							<p class="fonte-descricao">{{ fonte.descricao }}</p>
+							<div class="fonte-meta">
+								<span class="fonte-tipo">{{ fonte.tipo }}</span>
+								<span class="fonte-frequencia">{{ fonte.frequencia }}</span>
+								<a href="{{ fonte.url }}" target="_blank" rel="noopener" class="fonte-link">visitar</a>
+							</div>
+						</div>
+					</div>
+					{%- endfor %}
+				</div>
+			</div>
+
+			<!-- Estatísticas -->
+			<div class="curadoria-card">
+				<div class="curadoria-card-header">
+					<h2>Estatísticas</h2>
+				</div>
+				<div class="stats-grid">
+					<div class="stat-item">
+						<span class="stat-number">{{ collections.events | length }}</span>
+						<span class="stat-label">Eventos cadastrados</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-number">{{ collections.events | filterFutureEvents | length }}</span>
+						<span class="stat-label">Eventos futuros</span>
+					</div>
+					<div class="stat-item">
+						<span class="stat-number">{{ locais | getKeys | length }}</span>
+						<span class="stat-label">Locais</span>
+					</div>
+					<div class="stat-item">
+						{%- set fontesAtivas = 0 -%}
+						{%- for fonteId, fonte in fontes %}
+							{%- if fonte.ativo %}{% set fontesAtivas = fontesAtivas + 1 %}{% endif -%}
+						{%- endfor -%}
+						<span class="stat-number">{{ fontesAtivas }}</span>
+						<span class="stat-label">Fontes ativas</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Rascunhos Pendentes -->
+		<div class="curadoria-card curadoria-card-full">
+			<div class="curadoria-card-header">
+				<h2>Rascunhos Pendentes</h2>
+				<span class="curadoria-badge curadoria-badge-warning" id="drafts-count">carregando...</span>
+			</div>
+			<div id="drafts-container">
+				<div class="rascunhos-container" id="drafts-empty">
+					<p class="rascunhos-empty">
+						Nenhum rascunho pendente no momento.<br>
+						<span class="rascunhos-hint">Execute o agente de scraping para coletar novos eventos:</span>
+					</p>
+					<pre class="code-block"><code>cd agent && npm run scrape</code></pre>
+					<p class="rascunhos-hint">Os rascunhos aparecerão em <code>rascunhos/pendentes.json</code></p>
+				</div>
+				<div class="drafts-list" id="drafts-list" style="display: none;"></div>
+			</div>
+		</div>
+
+		<!-- Carregar arquivo de rascunhos (demo) -->
+		<div class="curadoria-card curadoria-card-full">
+			<div class="curadoria-card-header">
+				<h2>Carregar Rascunhos</h2>
+			</div>
+			<div class="rascunhos-container" style="text-align: left;">
+				<p class="rascunhos-hint" style="margin-bottom: 1rem;">Cole o conteúdo do arquivo <code>rascunhos/pendentes.json</code> ou carregue rascunhos de demonstração:</p>
+				<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+					<button class="draft-btn draft-btn-edit" id="load-demo">Carregar demonstração</button>
+					<label class="draft-btn draft-btn-link" style="cursor: pointer;">
+						<input type="file" id="load-file" accept=".json" style="display: none;">
+						Carregar arquivo JSON
+					</label>
+				</div>
+				<textarea id="json-input" placeholder='{"eventos": [...]}' style="width: 100%; margin-top: 1rem; min-height: 100px; padding: 0.75rem; font-family: var(--font-family-monospace); font-size: 0.875rem; border: 1px solid var(--border-color); border-radius: 8px; display: none;"></textarea>
+			</div>
+		</div>
+
+		<!-- Como usar -->
+		<div class="curadoria-card curadoria-card-full">
+			<div class="curadoria-card-header">
+				<h2>Como Funciona</h2>
+			</div>
+			<div class="workflow-steps">
+				<div class="workflow-step">
+					<div class="step-number">1</div>
+					<div class="step-content">
+						<h3>Coleta</h3>
+						<p>O agente faz scraping das fontes ativas e gera rascunhos normalizados</p>
+						<code>node agent/index.js</code>
+					</div>
+				</div>
+				<div class="workflow-step">
+					<div class="step-number">2</div>
+					<div class="step-content">
+						<h3>Curadoria</h3>
+						<p>Revise os rascunhos, edite títulos, vincule locais e aprove</p>
+					</div>
+				</div>
+				<div class="workflow-step">
+					<div class="step-number">3</div>
+					<div class="step-content">
+						<h3>Publicação</h3>
+						<p>Eventos aprovados viram arquivos .md e são publicados no próximo build</p>
+						<code>git push → Netlify rebuild</code>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Modal de Edição -->
+<div class="modal-overlay" id="edit-modal">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h3>Editar Rascunho</h3>
+			<button class="modal-close" id="modal-close">&times;</button>
+		</div>
+		<div class="modal-body">
+			<input type="hidden" id="edit-index">
+			<div class="form-row">
+				<label for="edit-titulo">Título</label>
+				<input type="text" id="edit-titulo">
+			</div>
+			<div class="form-row">
+				<label for="edit-data">Data</label>
+				<input type="date" id="edit-data">
+			</div>
+			<div class="form-row">
+				<label for="edit-local">Local</label>
+				<select id="edit-local">
+					<option value="">Selecione um local</option>
+					{%- for localId, local in locais %}
+					<option value="{{ localId }}">{{ local.nome }}</option>
+					{%- endfor %}
+				</select>
+			</div>
+			<div class="form-row">
+				<label for="edit-tags">Tags (separadas por vírgula)</label>
+				<input type="text" id="edit-tags" placeholder="música, show, festival">
+			</div>
+			<div class="form-row">
+				<label for="edit-descricao">Descrição</label>
+				<textarea id="edit-descricao"></textarea>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="draft-btn draft-btn-link" id="modal-cancel">Cancelar</button>
+			<button class="draft-btn draft-btn-approve" id="modal-save">Salvar e Aprovar</button>
+		</div>
+	</div>
+</div>
+
+<script>
+(function() {
+	// Estado
+	let drafts = [];
+	let approved = [];
+	let rejected = [];
+
+	// Elementos
+	const draftsCount = document.getElementById('drafts-count');
+	const draftsEmpty = document.getElementById('drafts-empty');
+	const draftsList = document.getElementById('drafts-list');
+	const loadDemo = document.getElementById('load-demo');
+	const loadFile = document.getElementById('load-file');
+	const modal = document.getElementById('edit-modal');
+	const modalClose = document.getElementById('modal-close');
+	const modalCancel = document.getElementById('modal-cancel');
+	const modalSave = document.getElementById('modal-save');
+
+	// Dados de demonstração
+	const demoData = {
+		eventos: [
+			{
+				titulo: "Festival de Jazz no Ibirapuera",
+				descricao: "Uma noite especial com os melhores artistas de jazz do Brasil e convidados internacionais.",
+				data_inicio: "2026-03-15",
+				local_nome: "Parque Ibirapuera",
+				local_id: "parque-ibirapuera",
+				preco: "gratuito",
+				link_fonte: "https://exemplo.com/jazz",
+				tags: ["música", "jazz", "festival", "ao ar livre"],
+				imagem: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?w=800",
+				fonte: "catracalivre"
+			},
+			{
+				titulo: "Exposição: Arte Digital Imersiva",
+				descricao: "Mergulhe em uma experiência sensorial única com projeções em 360 graus de obras de artistas contemporâneos.",
+				data_inicio: "2026-02-20",
+				local_nome: "Japan House",
+				local_id: "japan-house",
+				preco: "R$ 40",
+				link_fonte: "https://exemplo.com/arte-digital",
+				tags: ["exposição", "arte", "tecnologia", "imersivo"],
+				imagem: "https://images.unsplash.com/photo-1550684376-efcbd6e3f031?w=800",
+				fonte: "japanhouse"
+			},
+			{
+				titulo: "Orquestra Sinfônica: Beethoven",
+				descricao: "A OSESP apresenta as sinfonias 5 e 7 de Beethoven em uma noite memorável.",
+				data_inicio: "2026-04-10",
+				local_nome: "Sala São Paulo",
+				local_id: "sala-sao-paulo",
+				preco: "R$ 80",
+				link_fonte: "https://exemplo.com/osesp",
+				tags: ["música", "clássica", "orquestra", "concerto"],
+				imagem: "https://images.unsplash.com/photo-1507838153414-b4b713384a76?w=800",
+				fonte: "sesc"
+			},
+			{
+				titulo: "Stand-up Comedy Night",
+				descricao: "Uma noite de risadas com os melhores comediantes da cena paulistana.",
+				data_inicio: "2026-02-28",
+				local_nome: "Centro Cultural São Paulo",
+				local_id: "ccsp",
+				preco: "R$ 30",
+				link_fonte: "https://exemplo.com/comedy",
+				tags: ["comédia", "stand-up", "humor"],
+				imagem: "https://images.unsplash.com/photo-1527224538127-2104bb71c51b?w=800",
+				fonte: "agendasp"
+			}
+		]
+	};
+
+	// Inicializar
+	updateUI();
+
+	// Event Listeners
+	loadDemo.addEventListener('click', function() {
+		drafts = [...demoData.eventos];
+		approved = [];
+		rejected = [];
+		updateUI();
+	});
+
+	loadFile.addEventListener('change', function(e) {
+		const file = e.target.files[0];
+		if (file) {
+			const reader = new FileReader();
+			reader.onload = function(e) {
+				try {
+					const data = JSON.parse(e.target.result);
+					drafts = data.eventos || [];
+					approved = [];
+					rejected = [];
+					updateUI();
+				} catch (err) {
+					alert('Erro ao ler arquivo JSON: ' + err.message);
+				}
+			};
+			reader.readAsText(file);
+		}
+	});
+
+	modalClose.addEventListener('click', closeModal);
+	modalCancel.addEventListener('click', closeModal);
+	modal.addEventListener('click', function(e) {
+		if (e.target === modal) closeModal();
+	});
+
+	modalSave.addEventListener('click', function() {
+		const index = parseInt(document.getElementById('edit-index').value);
+		const draft = drafts[index];
+		if (draft) {
+			draft.titulo = document.getElementById('edit-titulo').value;
+			draft.data_inicio = document.getElementById('edit-data').value;
+			draft.local_id = document.getElementById('edit-local').value;
+			draft.tags = document.getElementById('edit-tags').value.split(',').map(t => t.trim()).filter(Boolean);
+			draft.descricao = document.getElementById('edit-descricao').value;
+			approveDraft(index);
+		}
+		closeModal();
+	});
+
+	// Funções
+	function updateUI() {
+		const pending = drafts.filter((_, i) => !approved.includes(i) && !rejected.includes(i));
+		draftsCount.textContent = pending.length + ' pendente' + (pending.length !== 1 ? 's' : '');
+
+		if (drafts.length === 0) {
+			draftsEmpty.style.display = '';
+			draftsList.style.display = 'none';
+		} else {
+			draftsEmpty.style.display = 'none';
+			draftsList.style.display = '';
+			renderDrafts();
+		}
+	}
+
+	function renderDrafts() {
+		draftsList.innerHTML = drafts.map((draft, index) => {
+			const isApproved = approved.includes(index);
+			const isRejected = rejected.includes(index);
+			const statusClass = isApproved ? 'draft-approved' : (isRejected ? 'draft-rejected' : '');
+
+			return `
+				<div class="draft-item ${statusClass}" data-index="${index}">
+					<div class="draft-image" style="background-image: url('${draft.imagem || ''}')"></div>
+					<div class="draft-content">
+						<div class="draft-header">
+							<h4 class="draft-title">${escapeHtml(draft.titulo)}</h4>
+							<span class="draft-source">${draft.fonte || 'desconhecido'}</span>
+						</div>
+						<div class="draft-meta">
+							<span>📅 ${formatDate(draft.data_inicio)}</span>
+							<span>📍 ${escapeHtml(draft.local_nome || 'Local não definido')}</span>
+							<span>💰 ${draft.preco || 'A definir'}</span>
+						</div>
+						<p class="draft-description">${escapeHtml(draft.descricao || '')}</p>
+						<div class="draft-actions">
+							${!isApproved && !isRejected ? `
+								<button class="draft-btn draft-btn-approve" onclick="window.approveDraft(${index})">Aprovar</button>
+								<button class="draft-btn draft-btn-edit" onclick="window.editDraft(${index})">Editar</button>
+								<button class="draft-btn draft-btn-reject" onclick="window.rejectDraft(${index})">Rejeitar</button>
+							` : ''}
+							${isApproved ? '<span style="color: #22c55e; font-weight: 600;">✓ Aprovado</span>' : ''}
+							${isRejected ? '<span style="color: #ef4444; font-weight: 600;">✗ Rejeitado</span>' : ''}
+							<a href="${draft.link_fonte || '#'}" target="_blank" class="draft-btn draft-btn-link">Ver fonte</a>
+						</div>
+					</div>
+				</div>
+			`;
+		}).join('');
+	}
+
+	function approveDraft(index) {
+		if (!approved.includes(index)) {
+			approved.push(index);
+			generateMarkdown(drafts[index]);
+			updateUI();
+		}
+	}
+
+	function rejectDraft(index) {
+		if (!rejected.includes(index)) {
+			rejected.push(index);
+			updateUI();
+		}
+	}
+
+	function editDraft(index) {
+		const draft = drafts[index];
+		document.getElementById('edit-index').value = index;
+		document.getElementById('edit-titulo').value = draft.titulo || '';
+		document.getElementById('edit-data').value = draft.data_inicio || '';
+		document.getElementById('edit-local').value = draft.local_id || '';
+		document.getElementById('edit-tags').value = (draft.tags || []).join(', ');
+		document.getElementById('edit-descricao').value = draft.descricao || '';
+		modal.classList.add('active');
+	}
+
+	function closeModal() {
+		modal.classList.remove('active');
+	}
+
+	function generateMarkdown(draft) {
+		const slug = slugify(draft.titulo);
+		const md = `---
+title: "${escapeYaml(draft.titulo)}"
+date: ${draft.data_inicio}
+local_id: "${draft.local_id || ''}"
+tags: [${(draft.tags || []).map(t => `"${t}"`).join(', ')}]
+heroImage: "${draft.imagem || ''}"
+---
+
+${draft.descricao || ''}
+
+**Local:** ${draft.local_nome || 'A definir'}
+**Preço:** ${draft.preco || 'A definir'}
+
+[Mais informações](${draft.link_fonte || '#'})
+`;
+
+		// Criar download
+		const blob = new Blob([md], { type: 'text/markdown' });
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = `${slug}.md`;
+		a.click();
+		URL.revokeObjectURL(url);
+	}
+
+	function slugify(text) {
+		return text
+			.toLowerCase()
+			.normalize('NFD')
+			.replace(/[\u0300-\u036f]/g, '')
+			.replace(/[^a-z0-9]+/g, '-')
+			.replace(/^-|-$/g, '')
+			.slice(0, 50);
+	}
+
+	function escapeHtml(text) {
+		const div = document.createElement('div');
+		div.textContent = text || '';
+		return div.innerHTML;
+	}
+
+	function escapeYaml(text) {
+		return (text || '').replace(/"/g, '\\"');
+	}
+
+	function formatDate(dateStr) {
+		if (!dateStr) return 'Data não definida';
+		const date = new Date(dateStr);
+		return date.toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
+	}
+
+	// Expor funções globalmente
+	window.approveDraft = approveDraft;
+	window.rejectDraft = rejectDraft;
+	window.editDraft = editDraft;
+})();
+</script>

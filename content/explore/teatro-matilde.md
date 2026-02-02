@@ -1,7 +1,7 @@
 ---
 title: "Teatro Matilde"
 date: 2025-12-06
-location: "Centro Cultural Banco do Brasil (CCBB SP)"
+local_id: "ccbb-sp"
 tags: ["teatro", "comédia", "homenagem"]
 heroImage: "https://images.unsplash.com/photo-1507924538820-ede94a04019d?q=80&w=2000"
 ---

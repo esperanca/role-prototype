@@ -1,7 +1,7 @@
 ---
 title: "Loserville Tour 2025"
 date: 2025-12-20
-location: "Allianz Parque"
+local_id: "allianz-parque"
 tags: ["show", "pop_rock", "grande_estrutura", "festival"]
 heroImage: "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?q=80&w=2000"
 ---

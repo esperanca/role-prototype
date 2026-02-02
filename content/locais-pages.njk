@@ -1,0 +1,11 @@
+---
+pagination:
+  data: locaisArray
+  size: 1
+  alias: local
+  addAllPagesToCollections: true
+permalink: "/locais/{{ local.id }}/"
+layout: layouts/local.njk
+eleventyComputed:
+  title: "{{ local.nome }}"
+---

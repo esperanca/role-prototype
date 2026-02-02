@@ -1,7 +1,7 @@
 ---
 title: "Ney Matogrosso em São Paulo"
 date: 2025-12-21
-location: "Allianz Parque"
+local_id: "allianz-parque"
 tags: ["show", "mpb", "ícone_brasileiro", "turnê"]
 heroImage: "/img/ney-matogrosso.jpg"
 ---

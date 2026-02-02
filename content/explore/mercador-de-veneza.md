@@ -1,7 +1,7 @@
 ---
 title: "O Mercador de Veneza"
 date: 2025-12-14
-location: "Teatro Tuca"
+local_id: "teatro-tuca"
 tags: ["teatro", "shakespeare", "drama", "clássico"]
 heroImage: "https://images.unsplash.com/photo-1503095396549-807759245b35?q=80&w=2000"
 ---

@@ -1,0 +1,17 @@
+{
+  "name": "role-scraper-agent",
+  "version": "1.0.0",
+  "description": "Agente de scraping para curadoria de eventos culturais",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "scrape": "node index.js",
+    "scrape:sesc": "node index.js --source=sesc",
+    "scrape:dry": "node index.js --dry-run"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "node-fetch": "^3.3.2",
+    "slugify": "^1.6.6"
+  }
+}

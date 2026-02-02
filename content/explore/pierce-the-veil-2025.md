@@ -1,7 +1,7 @@
 ---
 title: "Pierce the Veil – The Jaws of Life Tour"
 date: 2025-12-16
-location: "Espaço Unimed"
+local_id: "espaco-unimed"
 tags: ["show", "rock", "post_hardcore", "turnê_internacional"]
 heroImage: "https://images.unsplash.com/photo-1498038432885-c6f3f1b912ee?q=80&w=2000"
 ---
