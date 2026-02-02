@@ -91,13 +91,33 @@ title: Painel de Curadoria
 			</div>
 		</div>
 
-		<!-- Carregar arquivo de rascunhos (demo) -->
+		<!-- Rodar Bot / Carregar Rascunhos -->
 		<div class="curadoria-card curadoria-card-full">
 			<div class="curadoria-card-header">
-				<h2>Carregar Rascunhos</h2>
+				<h2>Coletar Eventos</h2>
 			</div>
 			<div class="rascunhos-container" style="text-align: left;">
-				<p class="rascunhos-hint" style="margin-bottom: 1rem;">Cole o conteúdo do arquivo <code>rascunhos/pendentes.json</code> ou carregue rascunhos de demonstração:</p>
+				<p class="rascunhos-hint" style="margin-bottom: 1rem;">Execute o bot de scraping para coletar eventos de todas as fontes ativas:</p>
+				<div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+					<button class="draft-btn draft-btn-approve" id="run-scraper" style="font-size: 1rem; padding: 0.75rem 1.5rem;">
+						🤖 Rodar Bot de Scraping
+					</button>
+					<span id="scraper-status" style="color: var(--text-secondary);"></span>
+				</div>
+				<div id="scraper-progress" style="margin-top: 1rem; display: none;">
+					<div style="background: var(--bg-secondary); border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+						<div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+							<span>Progresso</span>
+							<span id="scraper-progress-text">0%</span>
+						</div>
+						<div style="background: var(--border-color); border-radius: 4px; height: 8px; overflow: hidden;">
+							<div id="scraper-progress-bar" style="background: var(--accent-color); height: 100%; width: 0%; transition: width 0.3s;"></div>
+						</div>
+					</div>
+					<div id="scraper-sources" style="font-size: 0.875rem;"></div>
+				</div>
+				<hr style="margin: 1.5rem 0; border: none; border-top: 1px solid var(--border-color);">
+				<p class="rascunhos-hint" style="margin-bottom: 1rem;">Ou carregue rascunhos manualmente:</p>
 				<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
 					<button class="draft-btn draft-btn-edit" id="load-demo">Carregar demonstração</button>
 					<label class="draft-btn draft-btn-link" style="cursor: pointer;">
@@ -105,7 +125,6 @@ title: Painel de Curadoria
 						Carregar arquivo JSON
 					</label>
 				</div>
-				<textarea id="json-input" placeholder='{"eventos": [...]}' style="width: 100%; margin-top: 1rem; min-height: 100px; padding: 0.75rem; font-family: var(--font-family-monospace); font-size: 0.875rem; border: 1px solid var(--border-color); border-radius: 8px; display: none;"></textarea>
 			</div>
 		</div>
 
@@ -202,6 +221,12 @@ title: Painel de Curadoria
 	const modalClose = document.getElementById('modal-close');
 	const modalCancel = document.getElementById('modal-cancel');
 	const modalSave = document.getElementById('modal-save');
+	const runScraper = document.getElementById('run-scraper');
+	const scraperStatus = document.getElementById('scraper-status');
+	const scraperProgress = document.getElementById('scraper-progress');
+	const scraperProgressBar = document.getElementById('scraper-progress-bar');
+	const scraperProgressText = document.getElementById('scraper-progress-text');
+	const scraperSources = document.getElementById('scraper-sources');
 
 	// Dados de demonstração
 	const demoData = {
@@ -284,6 +309,71 @@ title: Painel de Curadoria
 				}
 			};
 			reader.readAsText(file);
+		}
+	});
+
+	// Bot de Scraping
+	runScraper.addEventListener('click', async function() {
+		runScraper.disabled = true;
+		runScraper.innerHTML = '⏳ Executando...';
+		scraperStatus.textContent = 'Conectando às fontes...';
+		scraperProgress.style.display = 'block';
+		scraperProgressBar.style.width = '10%';
+		scraperProgressText.textContent = '10%';
+		scraperSources.innerHTML = '';
+
+		try {
+			const response = await fetch('/.netlify/functions/scrape');
+
+			scraperProgressBar.style.width = '50%';
+			scraperProgressText.textContent = '50%';
+			scraperStatus.textContent = 'Processando resultados...';
+
+			if (!response.ok) {
+				throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+			}
+
+			const data = await response.json();
+
+			scraperProgressBar.style.width = '100%';
+			scraperProgressText.textContent = '100%';
+
+			// Mostrar resultados por fonte
+			scraperSources.innerHTML = '<strong>Fontes processadas:</strong><br>' +
+				data.sources.map(s => {
+					const icon = s.success ? '✅' : '❌';
+					const count = s.success ? `${s.count} eventos` : s.error;
+					return `${icon} ${s.name}: ${count}`;
+				}).join('<br>');
+
+			scraperStatus.innerHTML = `<strong style="color: #22c55e;">Concluído!</strong> ${data.total} eventos coletados em ${(data.duration / 1000).toFixed(1)}s`;
+
+			// Carregar eventos
+			if (data.eventos && data.eventos.length > 0) {
+				drafts = data.eventos.map(e => ({
+					titulo: e.titulo,
+					descricao: e.descricao,
+					data_inicio: e.data,
+					local_nome: e.local_nome,
+					local_id: e.local_id,
+					preco: e.preco,
+					link_fonte: e.link,
+					tags: e.categorias || [],
+					imagem: e.imagem,
+					fonte: e._source
+				}));
+				approved = [];
+				rejected = [];
+				updateUI();
+			}
+
+		} catch (err) {
+			scraperStatus.innerHTML = `<strong style="color: #ef4444;">Erro:</strong> ${err.message}`;
+			scraperProgressBar.style.width = '100%';
+			scraperProgressBar.style.background = '#ef4444';
+		} finally {
+			runScraper.disabled = false;
+			runScraper.innerHTML = '🤖 Rodar Bot de Scraping';
 		}
 	});
 
